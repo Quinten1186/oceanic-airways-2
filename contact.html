@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Oceanic Airways</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #123;
+    }
+    .navbar {
+      background: #0b2d4d;
+      color: white;
+      padding: 18px 0;
+    }
+    .container {
+      width: 90%;
+      margin: 0 auto;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+    .page {
+      padding: 50px 0;
+    }
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    form {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    input, textarea, button {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background: #0b2d4d;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .footer {
+      background: #0b2d4d;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div><strong>✈️ Oceanic Airways</strong></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Search Flights</a></li>
+        <li><a href="manage.html">Manage Booking</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container page">
+    <div class="box">
+      <h1>Contact Us</h1>
+      <p>Email: support@oceanicairways.com</p>
+      <p>Phone: +1 (800) 555-0147</p>
+
+      <form>
+        <input type="text" placeholder="Your name" />
+        <input type="email" placeholder="Your email" />
+        <input type="text" placeholder="Subject" />
+        <textarea placeholder="Message"></textarea>
+        <button type="button">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    © 2024 Oceanic Airways
+  </footer>
+</body>
+</html>
