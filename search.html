@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Flights | Oceanic Airways</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #123;
+    }
+    .navbar {
+      background: #0b2d4d;
+      color: white;
+      padding: 18px 0;
+    }
+    .container {
+      width: 90%;
+      margin: 0 auto;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+    .page {
+      padding: 50px 0;
+    }
+    .box {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    input, select, button {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background: #0b2d4d;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .flight {
+      background: white;
+      margin-top: 20px;
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    .footer {
+      background: #0b2d4d;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+    @media (max-width: 700px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+      .nav-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div><strong>✈️ Oceanic Airways</strong></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Search Flights</a></li>
+        <li><a href="manage.html">Manage Booking</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container page">
+    <div class="box">
+      <h1>Search Flights</h1>
+      <form>
+        <input type="text" placeholder="From" />
+        <input type="text" placeholder="To" />
+        <input type="date" />
+        <input type="date" placeholder="Return" />
+        <input type="number" value="1" />
+        <select>
+          <option>Economy</option>
+          <option>Business</option>
+          <option>First</option>
+        </select>
+        <button type="button">Search</button>
+      </form>
+    </div>
+
+    <div class="flight">
+      <div>
+        <h3>New York → London</h3>
+        <p>12 Dec 2024 · 08:30 AM · 7h 30m</p>
+      </div>
+      <div>
+        <strong>$429</strong>
+        <br />
+        <button type="button">Select</button>
+      </div>
+    </div>
+
+    <div class="flight">
+      <div>
+        <h3>Miami → Paris</h3>
+        <p>18 Dec 2024 · 09:45 AM · 9h 30m</p>
+      </div>
+      <div>
+        <strong>$689</strong>
+        <br />
+        <button type="button">Select</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    © 2024 Oceanic Airways
+  </footer>
+</body>
+</html>
