@@ -1,0 +1,942 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Your Flight | Oceanic Airways</title>
+
+<style>
+:root {
+    --navy: #071b33;
+    --blue: #0879bd;
+    --teal: #35c4bc;
+    --background: #f3f6fa;
+    --white: #ffffff;
+    --text: #17283b;
+    --muted: #718096;
+    --border: #dfe6ee;
+    --green: #16855b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+button, input, select {
+    font: inherit;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.announcement {
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    padding: 9px 16px;
+    font-size: 12px;
+}
+
+.announcement span {
+    color: var(--teal);
+    font-weight: bold;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--navy);
+    color: var(--teal);
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+}
+
+.brand-name {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--navy);
+}
+
+.brand-subtitle {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    color: var(--muted);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: var(--blue);
+}
+
+.nav-button {
+    background: var(--navy);
+    color: white !important;
+    padding: 11px 17px;
+    border-radius: 6px;
+}
+
+main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 30px 24px 65px;
+}
+
+.breadcrumb {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 22px;
+}
+
+.breadcrumb a {
+    color: var(--blue);
+}
+
+.page-heading {
+    margin-bottom: 25px;
+}
+
+.eyebrow {
+    color: var(--blue);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+h1 {
+    color: var(--navy);
+    font-size: clamp(27px, 4vw, 38px);
+    line-height: 1.2;
+    margin-bottom: 9px;
+}
+
+.page-heading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.search-summary {
+    background: var(--navy);
+    color: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 22px;
+    align-items: center;
+    box-shadow: 0 8px 24px #071b3315;
+}
+
+.route-label {
+    color: #a9bdcf;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 10px;
+    margin-bottom: 6px;
+}
+
+.route-value {
+    font-size: 20px;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+.route-arrow {
+    color: var(--teal);
+    margin: 0 8px;
+}
+
+.summary-details {
+    color: #d1dce7;
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+.edit-search {
+    background: transparent;
+    border: 1px solid #ffffff70;
+    color: white;
+    border-radius: 6px;
+    padding: 11px 15px;
+    white-space: nowrap;
+}
+
+.edit-search:hover {
+    background: #ffffff15;
+}
+
+.results-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.results-heading h2 {
+    color: var(--navy);
+    font-size: 22px;
+}
+
+.results-heading p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.sort-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.sort-control select {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 9px;
+    color: var(--text);
+}
+
+.notice {
+    background: #eaf5fc;
+    border: 1px solid #cce7f8;
+    border-radius: 8px;
+    padding: 13px 15px;
+    font-size: 12px;
+    color: #245878;
+    margin-bottom: 20px;
+}
+
+.flight-list {
+    display: grid;
+    gap: 16px;
+}
+
+.flight-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.flight-card:hover {
+    box-shadow: 0 8px 25px #071b3310;
+    transform: translateY(-2px);
+}
+
+.flight-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.airline {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.airline-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--navy);
+    color: var(--teal);
+    display: grid;
+    place-items: center;
+    font-size: 19px;
+}
+
+.airline-name {
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.flight-number {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+.badge {
+    background: #e8f7ef;
+    color: var(--green);
+    border-radius: 5px;
+    padding: 5px 9px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.flight-main {
+    display: grid;
+    grid-template-columns: 1fr minmax(110px, 0.9fr) 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+.airport-time {
+    font-size: 27px;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+.airport-code {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.airport-city {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.arrival {
+    text-align: right;
+}
+
+.duration {
+    text-align: center;
+}
+
+.duration-time {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.duration-line {
+    height: 1px;
+    background: var(--border);
+    position: relative;
+    margin: 12px 0 9px;
+}
+
+.duration-line::before {
+    content: "✈";
+    position: absolute;
+    top: -12px;
+    left: calc(50% - 8px);
+    background: white;
+    color: var(--blue);
+    padding: 0 4px;
+    font-size: 15px;
+}
+
+.duration-type {
+    font-size: 10px;
+    color: var(--green);
+}
+
+.flight-bottom {
+    border-top: 1px solid var(--border);
+    margin-top: 22px;
+    padding-top: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+}
+
+.flight-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 17px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.fare-area {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.fare-label {
+    color: var(--muted);
+    font-size: 10px;
+    text-align: right;
+}
+
+.fare-price {
+    color: var(--navy);
+    font-size: 23px;
+    font-weight: 800;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.fare-note {
+    font-size: 10px;
+    color: var(--muted);
+    text-align: right;
+}
+
+.select-flight {
+    background: var(--blue);
+    color: white;
+    border: 0;
+    border-radius: 7px;
+    padding: 12px 18px;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.select-flight:hover {
+    background: #06649d;
+}
+
+.empty-state {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 35px 22px;
+    text-align: center;
+}
+
+.empty-state h3 {
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+footer {
+    background: var(--navy);
+    color: white;
+    padding: 32px 24px;
+}
+
+.footer-inner {
+    max-width: 1120px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.footer-copy {
+    font-size: 11px;
+    color: #b5c5d6;
+    margin-top: 5px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 11px;
+    color: #d5e0eb;
+}
+
+@media (max-width: 720px) {
+    .navbar {
+        padding: 13px 17px;
+    }
+
+    .nav-links {
+        gap: 13px;
+        font-size: 11px;
+    }
+
+    .nav-links a:not(.nav-button) {
+        display: none;
+    }
+
+    main {
+        padding: 24px 15px 45px;
+    }
+
+    .search-summary {
+        grid-template-columns: 1fr;
+        gap: 17px;
+        padding: 20px;
+    }
+
+    .edit-search {
+        justify-self: start;
+    }
+
+    .results-heading {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .flight-card {
+        padding: 17px;
+    }
+
+    .flight-main {
+        grid-template-columns: 1fr 0.8fr 1fr;
+        gap: 5px;
+    }
+
+    .airport-time {
+        font-size: 22px;
+    }
+
+    .flight-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .fare-area {
+        width: 100%;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .fare-label, .fare-price, .fare-note {
+        text-align: left;
+    }
+
+    .select-flight {
+        flex: 1;
+    }
+
+    .fare-info {
+        flex: 1;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+    YOUR JOURNEY STARTS HERE <span>✦</span> Discover more with Oceanic Airways
+</div>
+
+<header>
+    <nav class="navbar">
+        <a class="brand" href="homepage.html">
+            <div class="brand-icon">✈</div>
+            <div>
+                <div class="brand-name">OCEANIC AIRWAYS</div>
+                <div class="brand-subtitle">BEYOND THE HORIZON</div>
+            </div>
+        </a>
+
+        <div class="nav-links">
+            <a href="homepage.html">Home</a>
+            <a href="homepage.html#destinations">Destinations</a>
+            <a href="homepage.html#experience">Our Experience</a>
+            <a href="homepage.html#loyalty">Loyalty</a>
+            <a class="nav-button" href="homepage.html">Book a flight</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <div class="breadcrumb">
+        <a href="homepage.html">Home</a> &nbsp; / &nbsp; Book flights
+    </div>
+
+    <section class="page-heading">
+        <div class="eyebrow">Your next adventure awaits</div>
+        <h1>Choose your flight.</h1>
+        <p>Compare departure times, journey durations and fares to find the right flight for you.</p>
+    </section>
+
+    <section class="search-summary">
+        <div>
+            <div class="route-label">Your journey</div>
+            <div class="route-value">
+                <span id="originDisplay">Brisbane (BNE)</span>
+                <span class="route-arrow">→</span>
+                <span id="destinationDisplay">Sydney (SYD)</span>
+            </div>
+            <div class="summary-details" id="routeDetails">Select a flight for your journey.</div>
+        </div>
+
+        <div>
+            <div class="route-label">Travel details</div>
+            <div class="route-value" style="font-size:16px" id="travelDates">Flexible dates</div>
+            <div class="summary-details" id="passengerDetails">1 passenger · Economy</div>
+        </div>
+
+        <button class="edit-search" onclick="goBackToSearch()">← Edit search</button>
+    </section>
+
+    <section class="results-heading">
+        <div>
+            <h2>Available flights</h2>
+            <p id="resultsDescription">Explore our example flight options.</p>
+        </div>
+
+        <div class="sort-control">
+            <label for="sortFlights">Sort by</label>
+            <select id="sortFlights">
+                <option value="recommended">Recommended</option>
+                <option value="price">Lowest price</option>
+                <option value="duration">Shortest journey</option>
+                <option value="departure">Departure time</option>
+            </select>
+        </div>
+    </section>
+
+    <div class="notice">
+        <strong>ⓘ Demonstration fares:</strong>
+        These flights and prices are examples for the Oceanic Airways website project.
+        They are not live schedules, available seats or bookable fares.
+    </div>
+
+    <section class="flight-list" id="flightList" aria-live="polite"></section>
+
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand">OCEANIC AIRWAYS ✈</div>
+            <div class="footer-copy">© 2026 Oceanic Airways. Beyond the horizon.</div>
+            <div class="footer-copy">A fictional airline website project.</div>
+        </div>
+
+        <div class="footer-links">
+            <a href="homepage.html">Home</a>
+            <a href="homepage.html#destinations">Destinations</a>
+            <a href="homepage.html#experience">Our Experience</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+/*
+    OCEANIC AIRWAYS FLIGHT RESULTS
+
+    This page uses demonstration flight data.
+    It does not connect to a real airline booking system.
+*/
+
+const params = new URLSearchParams(window.location.search);
+
+const search = {
+    origin: params.get("origin") || "Brisbane (BNE)",
+    destination: params.get("destination") || "Sydney (SYD)",
+    departure: params.get("departure") || "",
+    returnDate: params.get("return") || "",
+    passengers: Number(params.get("passengers")) || 1,
+    cabin: params.get("cabin") || "Economy"
+};
+
+// Example flights. These are not real schedules.
+const exampleFlights = [
+    {
+        id: "OA201",
+        number: "OA 201",
+        fromTime: "07:10",
+        toTime: "08:40",
+        duration: 90,
+        aircraft: "Airbus A220-300",
+        stops: "Non-stop",
+        fare: 189,
+        badge: "EARLY DEPARTURE"
+    },
+    {
+        id: "OA215",
+        number: "OA 215",
+        fromTime: "10:25",
+        toTime: "11:55",
+        duration: 90,
+        aircraft: "Boeing 737-800",
+        stops: "Non-stop",
+        fare: 219,
+        badge: "POPULAR"
+    },
+    {
+        id: "OA231",
+        number: "OA 231",
+        fromTime: "14:15",
+        toTime: "15:45",
+        duration: 90,
+        aircraft: "Airbus A320neo",
+        stops: "Non-stop",
+        fare: 249,
+        badge: ""
+    },
+    {
+        id: "OA249",
+        number: "OA 249",
+        fromTime: "18:50",
+        toTime: "20:20",
+        duration: 90,
+        aircraft: "Boeing 737-800",
+        stops: "Non-stop",
+        fare: 199,
+        badge: "EVENING FLIGHT"
+    }
+];
+
+function formatDate(dateString) {
+    if (!dateString) return "";
+
+    const date = new Date(dateString + "T12:00:00");
+
+    return date.toLocaleDateString("en-AU", {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+}
+
+function getAirportCode(value) {
+    const match = value.match(/\(([A-Za-z]{3})\)/);
+
+    if (match) return match[1].toUpperCase();
+
+    return value.trim().toUpperCase() || "???";
+}
+
+function getAirportName(value) {
+    return value.replace(/\s*\([A-Za-z]{3}\)/, "").trim() || value;
+}
+
+function formatDuration(minutes) {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    if (hours === 0) return remainingMinutes + "m";
+
+    return hours + "h " +
+        (remainingMinutes ? remainingMinutes + "m" : "");
+}
+
+function getCabinMultiplier() {
+    switch (search.cabin) {
+        case "Premium Economy": return 1.65;
+        case "Business": return 3.4;
+        case "First": return 5.8;
+        default: return 1;
+    }
+}
+
+function getFare(flight) {
+    return Math.round(flight.fare * getCabinMultiplier());
+}
+
+function updateSummary() {
+    document.getElementById("originDisplay").textContent = search.origin;
+    document.getElementById("destinationDisplay").textContent = search.destination;
+
+    document.getElementById("routeDetails").textContent =
+        getAirportCode(search.origin) + " → " +
+        getAirportCode(search.destination);
+
+    let dateText = search.departure
+        ? formatDate(search.departure)
+        : "Flexible dates";
+
+    if (search.returnDate) {
+        dateText += " – " + formatDate(search.returnDate);
+    }
+
+    document.getElementById("travelDates").textContent = dateText;
+
+    document.getElementById("passengerDetails").textContent =
+        search.passengers + (search.passengers === 1
+            ? " passenger · "
+            : " passengers · ") + search.cabin;
+
+    document.getElementById("resultsDescription").textContent =
+        "Example fares shown per passenger, one way, in AUD. " +
+        "Cabin: " + search.cabin + ".";
+}
+
+function renderFlights() {
+    const list = document.getElementById("flightList");
+    const sort = document.getElementById("sortFlights").value;
+
+    let flights = [...exampleFlights];
+
+    if (sort === "price") {
+        flights.sort((a, b) => getFare(a) - getFare(b));
+    } else if (sort === "duration") {
+        flights.sort((a, b) => a.duration - b.duration);
+    } else if (sort === "departure") {
+        flights.sort((a, b) => a.fromTime.localeCompare(b.fromTime));
+    }
+
+    list.innerHTML = "";
+
+    flights.forEach(flight => {
+        const fare = getFare(flight);
+        const badge = flight.badge
+            ? `<span class="badge">${flight.badge}</span>`
+            : "";
+
+        const card = document.createElement("article");
+        card.className = "flight-card";
+
+        card.innerHTML = `
+            <div class="flight-top">
+                <div class="airline">
+                    <div class="airline-logo">✈</div>
+                    <div>
+                        <div class="airline-name">Oceanic Airways</div>
+                        <div class="flight-number">${flight.number} · ${flight.aircraft}</div>
+                    </div>
+                </div>
+                ${badge}
+            </div>
+
+            <div class="flight-main">
+                <div>
+                    <div class="airport-time">${flight.fromTime}</div>
+                    <div class="airport-code">${getAirportCode(search.origin)}</div>
+                    <div class="airport-city">${getAirportName(search.origin)}</div>
+                </div>
+
+                <div class="duration">
+                    <div class="duration-time">${formatDuration(flight.duration)}</div>
+                    <div class="duration-line"></div>
+                    <div class="duration-type">${flight.stops}</div>
+                </div>
+
+                <div class="arrival">
+                    <div class="airport-time">${flight.toTime}</div>
+                    <div class="airport-code">${getAirportCode(search.destination)}</div>
+                    <div class="airport-city">${getAirportName(search.destination)}</div>
+                </div>
+            </div>
+
+            <div class="flight-bottom">
+                <div class="flight-details">
+                    <span>✈ ${flight.aircraft}</span>
+                    <span>✓ ${search.cabin}</span>
+                    <span>◷ ${formatDuration(flight.duration)}</span>
+                </div>
+
+                <div class="fare-area">
+                    <div class="fare-info">
+                        <div class="fare-label">FROM / PERSON</div>
+                        <div class="fare-price">$${fare.toLocaleString("en-AU")}</div>
+                        <div class="fare-note">AUD · one way</div>
+                    </div>
+
+                    <button class="select-flight"
+                        data-flight-id="${flight.id}">
+                        Select flight →
+                    </button>
+                </div>
+            </div>
+        `;
+
+        list.appendChild(card);
+    });
+}
+
+function goBackToSearch() {
+    // Return to the homepage. Search form details can be entered again there.
+    window.location.href = "homepage.html";
+}
+
+document.getElementById("sortFlights").addEventListener("change", renderFlights);
+
+document.getElementById("flightList").addEventListener("click", event => {
+    const button = event.target.closest(".select-flight");
+
+    if (!button) return;
+
+    const flight = exampleFlights.find(item => item.id === button.dataset.flightId);
+
+    if (!flight) return;
+
+    const nextParams = new URLSearchParams({
+        origin: search.origin,
+        destination: search.destination,
+        departure: search.departure,
+        return: search.returnDate,
+        passengers: String(search.passengers),
+        cabin: search.cabin,
+        flight: flight.id,
+        fare: String(getFare(flight))
+    });
+
+    // This is the next page in the booking journey.
+    // We will create fare-selection.html as our next step.
+    window.location.href = "fare-selection.html?" + nextParams.toString();
+});
+
+updateSummary();
+renderFlights();
+</script>
+
+</body>
+</html>
+```
